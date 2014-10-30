@@ -15,18 +15,20 @@ var queueMethods = {
     this.storage[this.length + 1] = value;
     this.length++;
   },
-  dequeue: function(){
 
-    var numToReturn = this.storage[1];
-    delete this.storage[1];
-    if(this.length>0){
-      this.length--;
-    };
-    for(var key in this.storage){
-      key = key -1;
-    }
-    return numToReturn;
-  },
+  dequeue: function(){
+  var numToReturn = this.storage[1];
+  delete this.storage[1];
+  if(this.length>0){
+    this.length--;
+  };
+  for(var key in this.storage){
+    var value = this.storage[key];
+    key = parseInt(key) - 1;
+    this.storage[key] = value;
+  }
+  return numToReturn;
+},
 
   size: function(){
     return this.length;

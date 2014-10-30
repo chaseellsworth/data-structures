@@ -13,16 +13,18 @@ var makeQueue = function(){
   };
 
   someInstance.dequeue = function(){
-    var numToReturn = storage[1];
-    delete storage[1];
-    if (length>0) {
-      length--;
-    };
-    for(var key in storage){
-      key = key -1;
-    }
-    return numToReturn;
+  var numToReturn = storage[1];
+  delete storage[1];
+  if(length>0){
+    length--;
   };
+  for(var key in storage){
+    var value = storage[key];
+    key = parseInt(key) - 1;
+    storage[key] = value;
+  }
+  return numToReturn;
+};
 
   someInstance.size = function(){
     return length;

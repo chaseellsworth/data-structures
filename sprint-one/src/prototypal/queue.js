@@ -15,21 +15,18 @@ var queueMethods = {
   },
 
   dequeue: function(){
-    //save value of front of line
-    var numToReturn = this.storage[1];
-    //delete value at front of line
-    delete this.storage[1];
-
-    if(this.length > 0) {
-      this.length--;
-    };
-    //loop through keys and update keys
-    for (var key in this.storage) {
-      key = key - 1;
-    }
-    //return saved value
-    return numToReturn;
-  },
+  var numToReturn = this.storage[1];
+  delete this.storage[1];
+  if(this.length>0){
+    this.length--;
+  };
+  for(var key in this.storage){
+    var value = this.storage[key];
+    key = parseInt(key) - 1;
+    this.storage[key] = value;
+  }
+  return numToReturn;
+},
 
   size: function () {
     return this.length;
